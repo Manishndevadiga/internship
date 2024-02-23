@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Student Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            padding-top: 20px;
+            /* Adjusted padding */
+            background-color: #f8f9fa;
+            color: #495057;
+            background: url('https://res.cloudinary.com/dphaltxki/image/upload/v1704899305/velv4lh2tlrkrb3kpjnh.jpg') center/cover no-repeat fixed;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #343a40;
+        }
+
+        .link-box {
+            margin-top: 20px;
+        }
+
+        .link-box a {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            /* Light color */
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            color: #007bff;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .link-box a:hover {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        a {
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="/"><button class="btn btn-success clear-btn">Home</button></a>
+        <a href="/StuLog"><button class="btn btn-success clear-btn">Login</button></a>
+    </div>
+
+    <div class="container">
+        <h2>
+            Welcome Back <%= name %>...
+        </h2>
+
+        <!-- View Images Box -->
+        <div class="link-box">
+            <a href="/ViewImages">View Images</a>
+        </div>
+
+        <!-- Timetable Box -->
+        <div class="link-box">
+            <a href="/Timetable">Timetable</a>
+        </div>
+
+        <div class="link-box">
+            <a href="/fileReadStd">Read Notice</a>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

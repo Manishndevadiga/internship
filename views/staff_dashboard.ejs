@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-container {
+            height: 100%;
+            display: flex;
+            background-color: rgb(234, 225, 213);
+        }
+
+        .left-div {
+            border-radius: 0 5% 5% 0;
+            width: 8%;
+            background-image: linear-gradient(to bottom, rgb(97, 157, 229), rgb(10, 10, 156));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            transition: width 0.5s ease;
+        }
+
+        .right-div {
+            flex: 1;
+            background-color: rgb(232, 224, 213);
+        }
+
+        .button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            margin: 20px;
+            /*icons related */
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        .button img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .left-div.expanded .button img {
+            transform: rotate(180deg);
+        }
+
+        .right-div {
+            flex: 1;
+            background: url('  https://res.cloudinary.com/dphaltxki/image/upload/v1708228553/qhkcp08qnqglmohzaz6o.jpg') center/cover no-repeat fixed;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .info-box {
+            width: 320px;
+            height: 220px;
+            background-color: #fff;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+
+        }
+
+        .info-box:hover {
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box h2 {
+            margin: 0;
+        }
+
+        .info-box div {
+            font-size: 28px;
+            margin-top: 8px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        h2 {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .user-name {
+            text-align: center;
+            height: 600px;
+            width: 400px;
+            border-radius: 8%;
+            background-color: white;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .user-name h2 {
+            margin: 10px 0;
+        }
+
+        .user-name h3 {
+            margin: 5px 0;
+        }
+
+        .user-name p {
+            margin: 0;
+        }
+
+
+
+        @keyframes slideInFromBottom {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        #student-count {
+            color: rgb(90, 75, 224);
+            font-size: 80px;
+            animation: slideInFromBottom 1s ease;
+        }
+
+
+        #staff-count {
+            color: red;
+            font-size: 80px;
+            animation: slideInFromBottom 1s ease;
+        }
+
+        .user-name {
+            background-image: linear-gradient(to bottom, rgb(154, 186, 225), rgb(10, 10, 156));
+            color: white;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            animation: slideInFromBottom 1.3s ease;
+        }
+
+        .alllogos {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            margin: 60px;
+        }
+
+        .alllogos img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-container">
+        <div class="left-div">
+            <button id="navbutton" class="button" onclick="expandLeftDiv()">
+                <img src="https://res.cloudinary.com/dphaltxki/image/upload/v1707549009/ysgjz2r3jpczwsbuwxs5.png"
+                    alt="Expand Button">
+            </button>
+
+            <div class="logos">
+
+                <a href="/"><button class="alllogos">
+                        <img src="https://res.cloudinary.com/dphaltxki/image/upload/v1708232559/ylwmusnrlzvmyusze4cc.png"
+                            alt="Expand Button">
+                    </button></a>
+
+                <a href="/fileReadStd"><button class="alllogos">
+                        <img src="https://res.cloudinary.com/dphaltxki/image/upload/v1708232543/e9wzxgwtbqcokzurt0ep.png"
+                            alt="Expand Button">
+                    </button></a>
+
+                <a href="/Timetable"><button class="alllogos">
+                        <img src="https://res.cloudinary.com/dphaltxki/image/upload/v1708232518/du1xocpxd9dffwqcvplz.png"
+                            alt="Expand Button">
+                    </button></a>
+
+
+            </div>
+        </div>
+
+        <div class="right-div">
+
+            <div class="user-name">
+                <h2>Welcome Back!</h2>
+                <h2>
+                    <%= name %>
+                </h2>
+
+                <p></p>
+                <a href="/logout"><button class="btn btn-primary">Logout</button></a>
+            </div>
+
+
+
+            <div class="info-box">
+                <h2>Students</h2>
+                <div id="student-count">
+                    <%= studentCount %>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h2>Staffs</h2>
+                <div id="staff-count">
+                    <%= staffCount %>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <script>
+            function expandLeftDiv() {
+                var leftDiv = document.querySelector('.left-div');
+                var rightDiv = document.querySelector('.right-div');
+                var buttonImg = document.querySelector('.button img');
+
+                if (leftDiv.classList.contains('expanded')) {
+                    leftDiv.classList.remove('expanded');
+                    leftDiv.style.width = '8%';
+                    buttonImg.style.transform = 'rotate(0deg)';
+                    rightDiv.style.flex = '1';
+                } else {
+                    leftDiv.classList.add('expanded');
+                    leftDiv.style.width = '20%';
+                    buttonImg.style.transform = 'rotate(180deg)';
+                    rightDiv.style.flex = '50%';
+                }
+            }
+        </script>
+
+</body>
+
+</html>

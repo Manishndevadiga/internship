@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Custom CSS for forgot password page */
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-forgot {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-back {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .svg-image {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px auto;
+            display: block;
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- SVG Image -->
+        <img src="https://i.pinimg.com/564x/d8/5f/be/d85fbe4b46be744421ad4f07ec8324dd.jpg" alt="Forgot Password"
+            class="svg-image">
+
+        <!-- Form -->
+        <form action="/forgotpassword_post" method="post">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                    placeholder="Enter email" name="email" required>
+            </div>
+
+            <!-- Send Button -->
+            <button type="submit" class="btn btn-primary btn-forgot">Send</button>
+
+            <!-- Back Button -->
+            <a href="/googlelogin" class="btn btn-secondary btn-back">Back</a>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

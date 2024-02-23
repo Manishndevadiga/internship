@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Timetable</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .table-container {
+            margin-bottom: 20px;
+        }
+
+        table {
+            background-color: #fff;
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #dee2e6;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ced4da;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .action-buttons button {
+            margin-left: 5px;
+        }
+
+        /* Style for table caption */
+        caption {
+            caption-side: top;
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Exam Timetable</h1>
+
+        <div class="table-container">
+            <input type="text" id="tableName" placeholder="Enter Table Name">
+            <button id="addTableButton" class="btn btn-primary" onclick="addTable()">Add New Table</button>
+        </div>
+
+        <div id="tables">
+            <!-- Existing table or new tables will be appended here -->
+        </div>
+    </div>
+
+    <script>
+        function addRow(row) {
+            var table = row.closest('table');
+            var newRow = table.insertRow();
+            var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+            cell1.innerHTML = "<input type='text' placeholder='Enter day'>";
+            cell2.innerHTML = "<input type='text' placeholder='Enter date'>";
+            cell3.innerHTML = "<input type='text' placeholder='Enter subject'>";
+            cell4.innerHTML = "<button class='btn btn-danger' onclick='deleteRow(this.parentNode.parentNode)'>Delete</button>";
+            cell5.innerHTML = "<button class='btn btn-success' onclick='addRow(this.parentNode.parentNode)'>Add Row</button>";
+        }
+
+        function deleteRow(row) {
+            var table = row.closest('table');
+            table.deleteRow(row.rowIndex);
+
+            if (table.rows.length === 1) { // If only header row is left
+                table.parentNode.removeChild(table); // Delete the entire table
+
+                // Enable the "Add New Table" button
+                var addTableButton = document.getElementById("addTableButton");
+                addTableButton.disabled = false;
+            }
+        }
+
+        function addTable() {
+            var tableName = document.getElementById("tableName").value;
+            if (!tableName) {
+                alert("Please enter a table name");
+                return;
+            }
+            var tablesContainer = document.getElementById("tables");
+            var newTable = document.createElement("table");
+            newTable.classList.add("table", "table-striped", "table-bordered");
+            newTable.innerHTML = `
+        <caption>${tableName}</caption>
+        <tr>
+          <th>Day</th>
+          <th>Date</th>
+          <th>Subject</th>
+          <th colspan="3">Actions</th>
+        </tr>`;
+            var initialRow = newTable.insertRow();
+            var cell1 = initialRow.insertCell(0);
+            var cell2 = initialRow.insertCell(1);
+            var cell3 = initialRow.insertCell(2);
+            var cell4 = initialRow.insertCell(3);
+            var cell5 = initialRow.insertCell(4);
+            var cell6 = initialRow.insertCell(5);
+            cell1.innerHTML = "<input type='text' placeholder='Enter day'>";
+            cell2.innerHTML = "<input type='text' placeholder='Enter date'>";
+            cell3.innerHTML = "<input type='text' placeholder='Enter subject'>";
+            cell4.innerHTML = "<button class='btn btn-danger' onclick='deleteRow(this.parentNode.parentNode)'>Delete</button>";
+            cell5.innerHTML = "<button class='btn btn-success' onclick='addRow(this.parentNode.parentNode)'>Add Row</button>";
+            cell6.innerHTML = "<button class='btn btn-primary' onclick='updateData(this.parentNode.parentNode.parentNode)'>Update</button>";
+            tablesContainer.appendChild(newTable);
+
+            // Disable the "Add New Table" button
+            var addTableButton = document.getElementById("addTableButton");
+            addTableButton.disabled = true;
+        }
+
+        function updateData(table) {
+            var data = [];
+            for (var i = 1; i < table.rows.length; i++) {
+                var row = table.rows[i];
+                var day = row.cells[0].querySelector('input').value;
+                var date = row.cells[1].querySelector('input').value;
+                var subject = row.cells[2].querySelector('input').value;
+                data.push({ day: day, date: date, subject: subject });
+            }
+            // Send data to the backend using Fetch API with POST method
+            fetch('your-backend-url', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data sent successfully:', data);
+                    // Handle response from the backend if needed
+                })
+                .catch(error => {
+                    console.error('There was a problem with your fetch operation:', error);
+                    // Handle error
+                });
+        }
+    </script>
+</body>
+
+</html>
